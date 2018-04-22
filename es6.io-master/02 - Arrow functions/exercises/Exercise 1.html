@@ -30,19 +30,50 @@
 </ul>
 
 <script>
-
+   
   // Select all the list items on the page and convert to array
-
+  const items = document.querySelectorAll('[data-time]');
+  const videos = 
+    Array.from(items)
   // Filter for only the elements that contain the word 'flexbox'
+    .filter(video => video.innerText.includes('Flexbox') )
 
   // map down to a list of time strings
-
+    .map(video => video.dataset.time)    //data-time
   // map to an array of seconds
+    .map(timecode => {
+       const parts = timecode.split(':').map(part => parseFloat(part));
+       return (parts[0] * 60) + parts[1];
+     } )
+     //reduce to get total seconds
+     .reduce((total, time) => total + time, 0);
+     console.log(videos);
 
+
+//   const items = document.querySelectorAll('[data-time]');
+//   console.log(items);
+//   const videos = Array.from(items);
+//   console.log(videos);
+//   // Filter for only the elements that contain the word 'flexbox'
+//   const flexboxVideos = videos
+//     .filter(video => video.innerText.includes('Flexbox') );
+//     console.log(flexboxVideos)
+//   // map down to a list of time strings
+//     const timecodes = flexboxVideos.map(video => video.dataset.time);    //data-time
+//  console.log(timecodes);
+//   // map to an array of seconds
+//      const seconds = timecodes.map(timecode => {
+//        const parts = timecode.split(':').map(part => parseFloat(part));
+//        console.log(parts);
+//        return (parts[0] * 60) + parts[1];
+//      } )
+    //  console.log(seconds)
+     
   // reduce to get total
-
-  // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
-
+    //  const total = seconds.reduce((total, time) => total + time, 0);
+  // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions 
+  //here, so chain them!
+  // console.log(total)
 </script>
 </body>
 </html>
